@@ -15,16 +15,19 @@ export class TodoFormComponent implements OnInit {
     description: '',
     date: '',
   };
+  isAdding: boolean = true;
 
   constructor(
     private todoService: TodoService,
     private router: Router
-  ) { }
+    private Active
+    ) { }
 
   ngOnInit() {
   }
 
   onFormSend() {
+    if (this.isAdding) {
     this.todoService.addTodo(this.todo)
     .subscribe(valor => {
       console.log(valor);
@@ -34,6 +37,8 @@ export class TodoFormComponent implements OnInit {
     }, error => {
       alert('Erro ao adicionar');
     });
+  } else {
+
   }
 
 }
